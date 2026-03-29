@@ -15,6 +15,10 @@ const complexities = {
         time: "Best: O(n log n) | Avg: O(n log n) | Worst: O(n log n)",
         space: "O(n)"
     },
+    divide: {
+        time: "Best: O(n log n) | Avg: O(n log n) | Worst: O(n log n)",
+        space: "O(n)"
+    },
     quick: {
         time: "Best: O(n log n) | Avg: O(n log n) | Worst: O(n²)",
         space: "O(log n)"
@@ -67,6 +71,7 @@ async function startSorting() {
     if (algo === "selection") await selectionSort();
     if (algo === "insertion") await insertionSort();
     if (algo === "merge") await mergeSort(0, array.length - 1);
+    if (algo === "divide") await divideAndConquerSort();
     if (algo === "quick") await quickSort(0, array.length - 1);
 
     const endTime = performance.now();
@@ -165,6 +170,11 @@ async function mergeSort(left, right) {
     await mergeSort(left, mid);
     await mergeSort(mid + 1, right);
     await merge(left, mid, right);
+}
+
+async function divideAndConquerSort() {
+    // Divide and conquer sorting is implemented here using merge sort.
+    await mergeSort(0, array.length - 1);
 }
 
 async function merge(left, mid, right) {
